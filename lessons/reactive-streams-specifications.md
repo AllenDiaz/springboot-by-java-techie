@@ -1,4 +1,4 @@
-# 3. Reactive Streams Specification
+# Reactive Streams Specification
 
 ## Key Interfaces
 - **Publisher** → produces events
