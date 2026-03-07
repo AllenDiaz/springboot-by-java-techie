@@ -1,29 +1,57 @@
 # Core Features of Reactive Programming
 
-Reactive Programming introduces several powerful features that make applications more scalable, efficient, and responsive. Below are the key concepts explained with examples.
-
----
-
 ## 1. Asynchronous & Non-blocking
-- **Traditional (Synchronous)**: Each request blocks a thread until completion.  
-  Example: A restaurant owner waits for the cook to finish one order before taking the next.  
-- **Reactive (Asynchronous)**: Requests are processed concurrently without blocking threads.  
-  Example: The restaurant owner takes multiple orders and serves them as soon as the cook notifies that food is ready.  
-
-**Advantages:**
-- Handle more requests with fewer resources  
-- Improved CPU utilization  
-- Reduced waiting time and downtime  
+- **Analogy**: Restaurant order handling  
+  - Synchronous: Owner waits for cook to finish one order before taking the next.  
+  - Asynchronous: Owner takes multiple orders and serves them as soon as the cook notifies that food is ready.  
+- **Thread-per-request vs Event-loop**  
+  - Traditional REST APIs block threads while waiting for responses.  
+  - Reactive programming frees threads by using event loops.  
+- **Advantages**  
+  - Scalability  
+  - Better CPU utilization  
+  - Reduced downtime  
 
 ---
 
 ## 2. Functional Style Code
-- Reactive code uses **functional programming constructs** similar to Java Stream API.  
-- Key data types:
-  - **Mono** → handles a single object  
-  - **Flux** → handles 0 to N objects  
+- **Comparison with Traditional REST API**  
+  - Imperative style: `deleteUser(id)` → directly calls DB.  
+  - Reactive style: Uses `Mono` and `Flux` with functional operators (`flatMap`, `map`).  
+- **Key Data Types**  
+  - `Mono` → handles a single object  
+  - `Flux` → handles multiple objects (0 to N)  
+- **Similarity**  
+  - Syntax and operators resemble Java Stream API.  
 
-**Example:**
-```java
-Mono.just("JavaTechie")
-Flux.just("Spring", "Hibernate", "Microservices")
+---
+
+## 3. Event-driven Data Flow
+- **Publisher–Subscriber Model**  
+  - Publisher emits events.  
+  - Subscriber consumes events in real time.  
+- **Continuous Streaming of Updates**  
+  - Example: Cricket live score updates pushed automatically.  
+- **Always-open Connections**  
+  - Enables real-time updates without repeated API calls.  
+
+---
+
+## 4. Back Pressure
+- **Handling Large Data Streams**  
+  - Prevents overload when consumer cannot process fast enough.  
+- **Slowing Down Data Flow**  
+  - Subscriber can request data at a manageable pace (`request(n)`).  
+- **Benefits**  
+  - Prevents crashes  
+  - Avoids memory overload  
+  - Ensures stable performance under heavy load  
+
+---
+
+## ✅ Summary
+Reactive Programming’s core features provide:
+- High concurrency with fewer threads  
+- Declarative, functional-style coding  
+- Real-time event-driven updates  
+- Safe handling of large data streams with back pressure
