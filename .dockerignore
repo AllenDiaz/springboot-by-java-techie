@@ -1,0 +1,11 @@
+# .dockerignore — exclude files from Docker build context
+# Keeps the context small and prevents secrets leaking into layers.
+
+.git
+.github
+.idea
+*.md
+lessons/
+target/           # Maven output (build stage re-creates it)
+*.log
+*.iml
