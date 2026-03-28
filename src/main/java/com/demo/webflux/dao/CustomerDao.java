@@ -23,7 +23,7 @@ public class CustomerDao {
     }
 
     public List<Customer> getCustomers() {
-        return IntStream.rangeClosed(1,50)
+        return IntStream.rangeClosed(1, 10)
                 .peek(CustomerDao::sleepExecution)
                 .peek(i -> System.out.println("Processing count : " + i)) 
                 .mapToObj(i -> new Customer(i, "customer" + i))
@@ -33,9 +33,15 @@ public class CustomerDao {
     
     public Flux<Customer> getCustomersStream() {
         
-        return Flux.range(1, 50)
+        return Flux.range(1, 10)
                 .delayElements(Duration.ofSeconds(1))
-                .doOnNext(i -> System.out.println("Processing count : " + i))
+                .doOnNext(i -> System.out.println("Processing count in streamflo: " + i))
+                .map(i -> new Customer(i, "customer" + i));
+    }
+
+    public Flux<Customer> getCustomerList() { 
+        return Flux.range(1, 10)
+                .doOnNext(i -> System.out.println("Processing count in streamflow: " + i))
                 .map(i -> new Customer(i, "customer" + i));
     }
 }
